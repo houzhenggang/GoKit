@@ -1,0 +1,7 @@
+platform:ios, '7.0'
+
+pod 'IQKeyboardManager'
+pod 'MBProgressHUD'
+pod 'SDWebImage'
+pod 'Reachability'
+pod 'QXToast', :git => 'https://github.com/wsrf2009/QXToast.git'

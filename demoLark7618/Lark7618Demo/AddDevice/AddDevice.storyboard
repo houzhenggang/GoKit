@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--Add Device View Controller-->
+        <scene sceneID="FQw-73-fcP">
+            <objects>
+                <viewController storyboardIdentifier="AddDeviceViewController" id="t8d-Ip-Kir" customClass="AddDeviceViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4wC-LS-cus"/>
+                        <viewControllerLayoutGuide type="bottom" id="x74-WX-HEc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h1Y-xZ-2nO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可以通过以下四种方式给终端设备配置WIFI网络" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bS-sX-FWR">
+                                <rect key="frame" x="142" y="50" width="316" height="18"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AT2-QL-7aj">
+                                <rect key="frame" x="234" y="98" width="133" height="33"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="使用FSK配置网络"/>
+                                <connections>
+                                    <action selector="buttonConfigViaFSKClicked:" destination="t8d-Ip-Kir" eventType="touchUpInside" id="kEc-yU-7Z1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7W-av-amz">
+                                <rect key="frame" x="222" y="204" width="156" height="33"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="使用SoftAP配置网络"/>
+                                <connections>
+                                    <action selector="buttonConfigViaSoftAPClicked:" destination="t8d-Ip-Kir" eventType="touchUpInside" id="IjI-fl-aTk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTe-cD-NAa">
+                                <rect key="frame" x="232" y="257" width="136" height="33"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="使用网页配置网络"/>
+                                <connections>
+                                    <action selector="buttonConfigViaWebClicked:" destination="t8d-Ip-Kir" eventType="touchUpInside" id="0A0-5s-7LK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mmD-AV-ZJ4">
+                                <rect key="frame" x="223" y="151" width="155" height="33"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="使用AirLink配置网络"/>
+                                <connections>
+                                    <action selector="buttonConfigViaAirLinkClicked:" destination="t8d-Ip-Kir" eventType="touchUpInside" id="xhm-ef-pFD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSb-Qn-MmY">
+                                <rect key="frame" x="257" y="310" width="85" height="33"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="二维码扫描"/>
+                                <connections>
+                                    <action selector="buttonQRCodeClicked:" destination="t8d-Ip-Kir" eventType="touchUpInside" id="LH4-Qn-dhT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aTe-cD-NAa" firstAttribute="centerX" secondItem="h1Y-xZ-2nO" secondAttribute="centerX" id="H8n-tP-Uq6"/>
+                            <constraint firstItem="mmD-AV-ZJ4" firstAttribute="centerX" secondItem="h1Y-xZ-2nO" secondAttribute="centerX" id="J56-sX-87D"/>
+                            <constraint firstItem="d7W-av-amz" firstAttribute="top" secondItem="mmD-AV-ZJ4" secondAttribute="bottom" constant="20" id="KQD-p5-2DI"/>
+                            <constraint firstItem="8bS-sX-FWR" firstAttribute="centerX" secondItem="h1Y-xZ-2nO" secondAttribute="centerX" id="RaN-2B-85B"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8bS-sX-FWR" secondAttribute="trailing" constant="15" id="SF5-zL-kGV"/>
+                            <constraint firstItem="d7W-av-amz" firstAttribute="centerX" secondItem="h1Y-xZ-2nO" secondAttribute="centerX" id="XaC-hg-Ang"/>
+                            <constraint firstItem="aSb-Qn-MmY" firstAttribute="top" secondItem="aTe-cD-NAa" secondAttribute="bottom" constant="20" id="YLx-V1-51i"/>
+                            <constraint firstItem="AT2-QL-7aj" firstAttribute="top" secondItem="8bS-sX-FWR" secondAttribute="bottom" constant="30" id="cGH-EW-eX6"/>
+                            <constraint firstItem="AT2-QL-7aj" firstAttribute="centerX" secondItem="h1Y-xZ-2nO" secondAttribute="centerX" id="kU8-wa-2rL"/>
+                            <constraint firstItem="aSb-Qn-MmY" firstAttribute="centerX" secondItem="h1Y-xZ-2nO" secondAttribute="centerX" id="pcP-cy-GIE"/>
+                            <constraint firstItem="8bS-sX-FWR" firstAttribute="top" secondItem="4wC-LS-cus" secondAttribute="bottom" constant="30" id="sgk-rg-nem"/>
+                            <constraint firstItem="8bS-sX-FWR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="h1Y-xZ-2nO" secondAttribute="leading" constant="15" id="tfG-XX-cF1"/>
+                            <constraint firstItem="aTe-cD-NAa" firstAttribute="top" secondItem="d7W-av-amz" secondAttribute="bottom" constant="20" id="vKm-vj-JfS"/>
+                            <constraint firstItem="mmD-AV-ZJ4" firstAttribute="top" secondItem="AT2-QL-7aj" secondAttribute="bottom" constant="20" id="vhI-z8-ac4"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VNx-ex-ZHI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="318" y="401"/>
+        </scene>
+    </scenes>
+</document>

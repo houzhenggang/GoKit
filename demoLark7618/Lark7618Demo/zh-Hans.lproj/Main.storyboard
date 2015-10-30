@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Sg-GB-6YB">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="1MT-5t-wGa">
+            <objects>
+                <navigationController id="1Sg-GB-6YB" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nUC-32-kEC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="QzP-v7-s95"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1eP-aG-03o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-388" y="377"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dFJ-HN-sO5">
+                                <rect key="frame" x="220" y="285" width="161" height="30"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9RR-8G-78Y">
+                                        <rect key="frame" x="141" y="0.0" width="20" height="30"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在检查网络状态" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNL-P7-yfa">
+                                        <rect key="frame" x="0.0" y="0.0" width="136" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="9RR-8G-78Y" firstAttribute="top" secondItem="dFJ-HN-sO5" secondAttribute="top" id="2l2-MG-kJZ"/>
+                                    <constraint firstAttribute="height" constant="30" id="80X-1G-wTD"/>
+                                    <constraint firstAttribute="bottom" secondItem="9RR-8G-78Y" secondAttribute="bottom" id="Aeq-SX-oZ4"/>
+                                    <constraint firstAttribute="bottom" secondItem="eNL-P7-yfa" secondAttribute="bottom" id="CtG-aM-KaB"/>
+                                    <constraint firstAttribute="trailing" secondItem="9RR-8G-78Y" secondAttribute="trailing" id="YwY-On-4mA"/>
+                                    <constraint firstItem="9RR-8G-78Y" firstAttribute="leading" secondItem="eNL-P7-yfa" secondAttribute="trailing" constant="5" id="hUT-MZ-zI4"/>
+                                    <constraint firstItem="eNL-P7-yfa" firstAttribute="leading" secondItem="dFJ-HN-sO5" secondAttribute="leading" id="jA3-9L-XWD"/>
+                                    <constraint firstItem="eNL-P7-yfa" firstAttribute="top" secondItem="dFJ-HN-sO5" secondAttribute="top" id="w5x-Dy-1PN"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dFJ-HN-sO5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ABJ-qc-81i"/>
+                            <constraint firstItem="dFJ-HN-sO5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bOG-Mx-H2z"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZDq-8i-Y1K"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="382" y="378"/>
+        </scene>
+        <!--Net Unreachable View Controller-->
+        <scene sceneID="LXz-pA-djT">
+            <objects>
+                <viewController storyboardIdentifier="NetUnreachableViewController" id="cVb-fa-RXK" customClass="NetUnreachableViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xkr-gs-kxS"/>
+                        <viewControllerLayoutGuide type="bottom" id="SCR-gL-L1P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b4g-K6-LVy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOe-hC-bau">
+                                <rect key="frame" x="278" y="285" width="45" height="30"/>
+                                <state key="normal" title="重试？"/>
+                                <connections>
+                                    <action selector="buttonRetryClick:" destination="cVb-fa-RXK" eventType="touchUpInside" id="jBh-NW-nrB"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="网络不可用，请检查网络设置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLf-WN-hNq">
+                                <rect key="frame" x="190" y="249" width="221" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tOe-hC-bau" firstAttribute="centerX" secondItem="vLf-WN-hNq" secondAttribute="centerX" id="HnV-p8-Se4"/>
+                            <constraint firstItem="tOe-hC-bau" firstAttribute="centerX" secondItem="b4g-K6-LVy" secondAttribute="centerX" id="QNk-0F-3R1"/>
+                            <constraint firstItem="tOe-hC-bau" firstAttribute="centerY" secondItem="b4g-K6-LVy" secondAttribute="centerY" id="Zbh-Pd-lF4"/>
+                            <constraint firstItem="tOe-hC-bau" firstAttribute="top" secondItem="vLf-WN-hNq" secondAttribute="bottom" constant="15" id="tgw-ug-9gd"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NDV-0h-Sct" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1082" y="380"/>
+        </scene>
+    </scenes>
+</document>

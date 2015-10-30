@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--Config Via Air Link View Controller-->
+        <scene sceneID="gKC-tz-crH">
+            <objects>
+                <viewController storyboardIdentifier="ConfigViaAirLinkViewController" id="eJq-Uh-chG" customClass="ConfigViaAirLinkViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9hz-Ry-uGN"/>
+                        <viewControllerLayoutGuide type="bottom" id="IEW-gR-V8f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nKM-x3-qUx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开启设备 AirLink 模式，并为新设备配置可用WIFI网络" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aV-z0-ghO">
+                                <rect key="frame" x="122" y="50" width="356" height="18"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FeY-Jf-gPH">
+                                <rect key="frame" x="191" y="98" width="218" height="30"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="WIFI网络的名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wHx-wZ-Ny6">
+                                        <rect key="frame" x="68" y="0.0" width="150" height="30"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="MhE-Wf-9az"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="网络名：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1K-Zo-hFg">
+                                        <rect key="frame" x="0.0" y="0.0" width="68" height="30"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="e1K-Zo-hFg" firstAttribute="top" secondItem="FeY-Jf-gPH" secondAttribute="top" id="6WS-Xz-FdZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="e1K-Zo-hFg" secondAttribute="bottom" id="Amn-PM-0dx"/>
+                                    <constraint firstAttribute="trailing" secondItem="wHx-wZ-Ny6" secondAttribute="trailing" id="DUg-SC-H9g"/>
+                                    <constraint firstItem="wHx-wZ-Ny6" firstAttribute="top" secondItem="FeY-Jf-gPH" secondAttribute="top" id="EcG-cb-IFU"/>
+                                    <constraint firstAttribute="bottom" secondItem="wHx-wZ-Ny6" secondAttribute="bottom" id="OCq-nF-26t"/>
+                                    <constraint firstItem="wHx-wZ-Ny6" firstAttribute="leading" secondItem="e1K-Zo-hFg" secondAttribute="trailing" id="cKw-jH-E6j"/>
+                                    <constraint firstItem="e1K-Zo-hFg" firstAttribute="leading" secondItem="FeY-Jf-gPH" secondAttribute="leading" id="nzH-AQ-4my"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1f-CN-qVC">
+                                <rect key="frame" x="282" y="228" width="36" height="34"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="配置"/>
+                                <connections>
+                                    <action selector="buttonConfigureClicked:" destination="eJq-Uh-chG" eventType="touchUpInside" id="k1R-1X-8Xv"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="40m-gV-NZL">
+                                <rect key="frame" x="191" y="148" width="219" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密码：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzv-VZ-SAU">
+                                        <rect key="frame" x="0.0" y="0.0" width="69" height="30"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="WIFI网络的密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JmC-ki-6BN">
+                                        <rect key="frame" x="69" y="0.0" width="150" height="30"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="Fxf-M0-cva"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <connections>
+                                            <action selector="buttonConfigureClicked:" destination="eJq-Uh-chG" eventType="editingDidEndOnExit" id="kci-SL-9nU"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="JmC-ki-6BN" secondAttribute="trailing" id="3lK-ff-wiQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="JmC-ki-6BN" secondAttribute="bottom" id="3ln-gU-CvR"/>
+                                    <constraint firstItem="JmC-ki-6BN" firstAttribute="top" secondItem="40m-gV-NZL" secondAttribute="top" id="3tH-gR-zKJ"/>
+                                    <constraint firstItem="Bzv-VZ-SAU" firstAttribute="top" secondItem="40m-gV-NZL" secondAttribute="top" id="YR6-of-mGW"/>
+                                    <constraint firstItem="JmC-ki-6BN" firstAttribute="leading" secondItem="Bzv-VZ-SAU" secondAttribute="trailing" id="bhC-JS-1rH"/>
+                                    <constraint firstAttribute="bottom" secondItem="Bzv-VZ-SAU" secondAttribute="bottom" id="ekl-Qw-osp"/>
+                                    <constraint firstItem="Bzv-VZ-SAU" firstAttribute="leading" secondItem="40m-gV-NZL" secondAttribute="leading" id="n5b-4c-GcQ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0aV-z0-ghO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nKM-x3-qUx" secondAttribute="leading" constant="15" id="01N-ee-CqF"/>
+                            <constraint firstItem="v1f-CN-qVC" firstAttribute="centerX" secondItem="nKM-x3-qUx" secondAttribute="centerX" id="1cF-YO-Cch"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0aV-z0-ghO" secondAttribute="trailing" constant="15" id="5EH-p9-T6D"/>
+                            <constraint firstItem="v1f-CN-qVC" firstAttribute="top" secondItem="40m-gV-NZL" secondAttribute="bottom" constant="50" id="6R7-FL-CDi"/>
+                            <constraint firstItem="FeY-Jf-gPH" firstAttribute="top" secondItem="0aV-z0-ghO" secondAttribute="bottom" constant="30" id="A1A-GR-n6K"/>
+                            <constraint firstItem="FeY-Jf-gPH" firstAttribute="centerX" secondItem="nKM-x3-qUx" secondAttribute="centerX" id="QfW-mO-a62"/>
+                            <constraint firstItem="0aV-z0-ghO" firstAttribute="top" secondItem="9hz-Ry-uGN" secondAttribute="bottom" constant="30" id="Qfl-fs-lxJ"/>
+                            <constraint firstItem="40m-gV-NZL" firstAttribute="leading" secondItem="FeY-Jf-gPH" secondAttribute="leading" id="VIJ-rX-5R6"/>
+                            <constraint firstItem="40m-gV-NZL" firstAttribute="top" secondItem="FeY-Jf-gPH" secondAttribute="bottom" constant="20" id="muS-ML-3zP"/>
+                            <constraint firstItem="40m-gV-NZL" firstAttribute="centerX" secondItem="nKM-x3-qUx" secondAttribute="centerX" id="w5t-N0-fU5"/>
+                            <constraint firstItem="0aV-z0-ghO" firstAttribute="centerX" secondItem="nKM-x3-qUx" secondAttribute="centerX" id="xdY-OP-gRH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textfieldKey" destination="JmC-ki-6BN" id="I24-v5-5wj"/>
+                        <outlet property="textfieldSSID" destination="wHx-wZ-Ny6" id="teh-ai-Rbw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rQY-fF-Smt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="313" y="395"/>
+        </scene>
+    </scenes>
+</document>

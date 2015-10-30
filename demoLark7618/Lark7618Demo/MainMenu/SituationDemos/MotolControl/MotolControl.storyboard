@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--Motol Control View Controller-->
+        <scene sceneID="HiU-U8-zGf">
+            <objects>
+                <tableViewController storyboardIdentifier="MotolControlViewController" id="yv5-MR-1Hq" customClass="MotolControlViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3SG-kK-ewX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="K9d-KN-Abm">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="100" id="ZhG-mA-Ztr">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZhG-mA-Ztr" id="fcD-h8-3JL">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电机控制" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kU3-3A-dAf">
+                                                    <rect key="frame" x="15" y="10" width="60" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-5" maxValue="5" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXa-ja-Exi">
+                                                    <rect key="frame" x="63" y="53" width="474" height="31"/>
+                                                    <color key="minimumTrackTintColor" red="0.0" green="0.73725490199999999" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="thumbTintColor" red="0.0" green="0.73725490199999999" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="sliderMotolSpeedValueChange:" destination="yv5-MR-1Hq" eventType="touchUpInside" id="mDe-3n-u7H"/>
+                                                    </connections>
+                                                </slider>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edb-D8-9eT">
+                                                    <rect key="frame" x="15" y="53" width="30" height="30"/>
+                                                    <state key="normal" title="➖"/>
+                                                    <connections>
+                                                        <action selector="buttonMotolSpeedDecClicked:" destination="yv5-MR-1Hq" eventType="touchUpInside" id="Clg-IQ-I3u"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YvW-D0-RBO">
+                                                    <rect key="frame" x="555" y="53" width="30" height="30"/>
+                                                    <state key="normal" title="➕"/>
+                                                    <connections>
+                                                        <action selector="buttonMotolSpeedIncClicked:" destination="yv5-MR-1Hq" eventType="touchUpInside" id="5JG-CC-XCl"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CwJ-Je-ZbM">
+                                                    <rect key="frame" x="105" y="10" width="10" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="YvW-D0-RBO" firstAttribute="centerY" secondItem="edb-D8-9eT" secondAttribute="centerY" id="1RG-dW-ZAn"/>
+                                                <constraint firstItem="CwJ-Je-ZbM" firstAttribute="centerY" secondItem="kU3-3A-dAf" secondAttribute="centerY" id="2Tu-fJ-TZK"/>
+                                                <constraint firstItem="edb-D8-9eT" firstAttribute="leading" secondItem="fcD-h8-3JL" secondAttribute="leading" constant="15" id="8h1-nr-NjZ"/>
+                                                <constraint firstItem="kU3-3A-dAf" firstAttribute="top" secondItem="fcD-h8-3JL" secondAttribute="top" constant="10" id="FnS-DJ-0UW"/>
+                                                <constraint firstItem="CXa-ja-Exi" firstAttribute="leading" secondItem="edb-D8-9eT" secondAttribute="trailing" constant="20" id="Q1r-YE-LGL"/>
+                                                <constraint firstAttribute="trailing" secondItem="YvW-D0-RBO" secondAttribute="trailing" constant="15" id="YaW-fZ-p0t"/>
+                                                <constraint firstItem="kU3-3A-dAf" firstAttribute="leading" secondItem="fcD-h8-3JL" secondAttribute="leading" constant="15" id="d85-mH-aJf"/>
+                                                <constraint firstItem="edb-D8-9eT" firstAttribute="top" secondItem="kU3-3A-dAf" secondAttribute="bottom" constant="25" id="emG-23-X6Q"/>
+                                                <constraint firstItem="YvW-D0-RBO" firstAttribute="leading" secondItem="CXa-ja-Exi" secondAttribute="trailing" constant="20" id="gdV-qy-2Pu"/>
+                                                <constraint firstItem="CXa-ja-Exi" firstAttribute="centerY" secondItem="edb-D8-9eT" secondAttribute="centerY" id="yS6-Ty-ial"/>
+                                                <constraint firstItem="CwJ-Je-ZbM" firstAttribute="leading" secondItem="kU3-3A-dAf" secondAttribute="trailing" constant="30" id="yZ2-YE-QoF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="yv5-MR-1Hq" id="V1a-Ei-5PQ"/>
+                            <outlet property="delegate" destination="yv5-MR-1Hq" id="jBs-Bx-q91"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="labelMotolSpeedValue" destination="CwJ-Je-ZbM" id="SeJ-XG-Bpt"/>
+                        <outlet property="sliderMotolSpeed" destination="CXa-ja-Exi" id="SrM-f2-Sjp"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y8p-Zk-8Lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="309" y="379"/>
+        </scene>
+    </scenes>
+</document>

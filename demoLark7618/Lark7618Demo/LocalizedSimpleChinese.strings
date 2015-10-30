@@ -1,0 +1,33 @@
+/* 
+  LocalizedSimpleChinese.strings
+  Lark7618Demo
+
+  Created by TTS on 15/10/14.
+  Copyright © 2015年 yytx. All rights reserved.
+*/
+
+// 设备列表
+"DevicesList" = "设备列表";
+"AddDevice" = "添加设备";
+"BondedDevices(%@)" = "已绑定设备（%@）";
+"UnboundDevices(%@)" = "未绑定设备（%@）";
+"OfflineDevices(%@)" = "离线设备（%@）";
+"UnfoundDevice" = "未发现设备";
+"gettingDeviceList" = "正在从云端获取设备列表";
+
+// 初始界面
+"CheckingNetworkReachability" = "正在检查网络是否可用";
+"CheckingIsDeviceInSoftAPMode" = "正在检查设备是否处于SoftAP模式";
+"Login..." = "正在登录";
+
+// FSK配置WIFI
+"ModeFSK" = "FSK模式";
+"ConfigNotes" = "配置注意事项";
+"NextStep" = "下一步";
+"ConfigingWIFIForDevice" = "正在给设备配置WIFI参数";
+"NoHint" = "未听到提示";
+"Resend" = "重新发送";
+"AdjustVolume" = "音量调节";
+"CurrentVolume" = "当前音量";
+"AdjustVolumeHint" = "请根据终端的提示调节音量";
+"configuration" = "根据终端提示按下对应按键";

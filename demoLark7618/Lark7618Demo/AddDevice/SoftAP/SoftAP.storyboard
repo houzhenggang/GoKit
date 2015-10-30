@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--SoftAP Mode View Controller-->
+        <scene sceneID="6rP-SB-g70">
+            <objects>
+                <viewController storyboardIdentifier="SoftAPModeViewController" id="8k6-Hf-xgx" customClass="SoftAPModeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ywH-kA-aUw"/>
+                        <viewControllerLayoutGuide type="bottom" id="S8X-LT-fZc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZES-i9-IFq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设备当前处于SoftAP模式且手机已连接到终端设备，是继续向前" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMr-5V-D8G">
+                                <rect key="frame" x="89" y="100" width="423" height="18"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还是重启终端设备后返回" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6h-lg-Bxn">
+                                <rect key="frame" x="218" y="246" width="165" height="18"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Wl-vy-Zao">
+                                <rect key="frame" x="258" y="279" width="85" height="33"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="继续使用？"/>
+                                <connections>
+                                    <action selector="buttonBackClick:" destination="8k6-Hf-xgx" eventType="touchUpInside" id="DPo-Ew-7Zd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HsR-gh-f7G">
+                                <rect key="frame" x="224" y="133" width="153" height="33"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="配置终端设备WIFI？"/>
+                                <connections>
+                                    <action selector="buttonConfigWIFIClicked:" destination="8k6-Hf-xgx" eventType="touchUpInside" id="1Qb-9A-eSn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DMr-5V-D8G" firstAttribute="top" secondItem="ywH-kA-aUw" secondAttribute="bottom" constant="80" id="09G-hT-yXR"/>
+                            <constraint firstItem="HsR-gh-f7G" firstAttribute="top" secondItem="DMr-5V-D8G" secondAttribute="bottom" constant="15" id="4Uy-d3-524"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DMr-5V-D8G" secondAttribute="trailing" constant="15" id="7gM-jy-Wbd"/>
+                            <constraint firstItem="0Wl-vy-Zao" firstAttribute="centerX" secondItem="ZES-i9-IFq" secondAttribute="centerX" id="7l7-Np-Uhq"/>
+                            <constraint firstItem="0Wl-vy-Zao" firstAttribute="top" secondItem="f6h-lg-Bxn" secondAttribute="bottom" constant="15" id="AhI-tb-l7e"/>
+                            <constraint firstItem="DMr-5V-D8G" firstAttribute="centerX" secondItem="ZES-i9-IFq" secondAttribute="centerX" id="BSj-1y-x8t"/>
+                            <constraint firstItem="0Wl-vy-Zao" firstAttribute="centerX" secondItem="ZES-i9-IFq" secondAttribute="centerX" id="Jp6-NB-sHb"/>
+                            <constraint firstItem="0Wl-vy-Zao" firstAttribute="centerY" secondItem="ZES-i9-IFq" secondAttribute="centerY" id="Ptn-Ht-yBM"/>
+                            <constraint firstItem="DMr-5V-D8G" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZES-i9-IFq" secondAttribute="leading" constant="15" id="SYe-Lc-zBy"/>
+                            <constraint firstItem="0Wl-vy-Zao" firstAttribute="centerX" secondItem="DMr-5V-D8G" secondAttribute="centerX" id="WPb-ME-nqJ"/>
+                            <constraint firstItem="f6h-lg-Bxn" firstAttribute="top" secondItem="HsR-gh-f7G" secondAttribute="bottom" constant="80" id="ju9-Ue-C7s"/>
+                            <constraint firstItem="HsR-gh-f7G" firstAttribute="centerX" secondItem="ZES-i9-IFq" secondAttribute="centerX" id="lfd-M5-bIl"/>
+                            <constraint firstItem="f6h-lg-Bxn" firstAttribute="centerX" secondItem="ZES-i9-IFq" secondAttribute="centerX" id="uTa-pC-eId"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Ptn-Ht-yBM"/>
+                                <exclude reference="WPb-ME-nqJ"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SSi-jG-tmM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1874" y="373"/>
+        </scene>
+        <!--Soft Ap Method View Controller-->
+        <scene sceneID="jpE-hz-3Gi">
+            <objects>
+                <viewController storyboardIdentifier="SoftApMethodViewController" id="Ggm-9t-WxG" customClass="SoftApMethodViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lzg-JB-YqR"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Bd-F8-7HZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v22-cg-D6d">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qL-m9-7B4">
+                                <rect key="frame" x="265" y="98" width="70" height="34"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="APP配置"/>
+                                <connections>
+                                    <action selector="buttonAppConfigClicked:" destination="Ggm-9t-WxG" eventType="touchUpInside" id="THM-Xa-oI5"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="终端设备的WIFI网络" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVB-6l-Sai">
+                                <rect key="frame" x="232" y="142" width="136" height="18"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您也可以在浏览器中打开" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NH5-xc-Z7b">
+                                <rect key="frame" x="218" y="260" width="165" height="18"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghu-Cl-duY">
+                                <rect key="frame" x="220" y="288" width="161" height="34"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="http://10.10.100.254"/>
+                                <connections>
+                                    <action selector="buttonBrowserConfigClicked:" destination="Ggm-9t-WxG" eventType="touchUpInside" id="Klq-6I-aXx"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="给终端设备配置WIFI网络" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTB-gO-csr">
+                                <rect key="frame" x="217" y="332" width="166" height="18"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您可以通过" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bex-BL-xM1">
+                                <rect key="frame" x="263" y="70" width="75" height="18"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UTB-gO-csr" firstAttribute="centerX" secondItem="v22-cg-D6d" secondAttribute="centerX" id="4ln-Jy-BVv"/>
+                            <constraint firstItem="bex-BL-xM1" firstAttribute="centerX" secondItem="v22-cg-D6d" secondAttribute="centerX" id="5gb-co-azP"/>
+                            <constraint firstItem="Ghu-Cl-duY" firstAttribute="centerX" secondItem="v22-cg-D6d" secondAttribute="centerX" id="5zJ-Hv-i9J"/>
+                            <constraint firstItem="9qL-m9-7B4" firstAttribute="centerX" secondItem="v22-cg-D6d" secondAttribute="centerX" id="7pn-Uf-M7j"/>
+                            <constraint firstItem="NH5-xc-Z7b" firstAttribute="top" secondItem="MVB-6l-Sai" secondAttribute="bottom" constant="100" id="AQS-pB-Uwd"/>
+                            <constraint firstItem="UTB-gO-csr" firstAttribute="top" secondItem="Ghu-Cl-duY" secondAttribute="bottom" constant="10" id="UOM-IP-cxb"/>
+                            <constraint firstItem="9qL-m9-7B4" firstAttribute="top" secondItem="bex-BL-xM1" secondAttribute="bottom" constant="10" id="W5q-Sk-Ife"/>
+                            <constraint firstItem="NH5-xc-Z7b" firstAttribute="centerX" secondItem="v22-cg-D6d" secondAttribute="centerX" id="cqT-Vl-3JC"/>
+                            <constraint firstItem="bex-BL-xM1" firstAttribute="top" secondItem="Lzg-JB-YqR" secondAttribute="bottom" constant="50" id="jHf-VJ-sjv"/>
+                            <constraint firstItem="Ghu-Cl-duY" firstAttribute="top" secondItem="NH5-xc-Z7b" secondAttribute="bottom" constant="10" id="l1Q-KE-JsC"/>
+                            <constraint firstItem="MVB-6l-Sai" firstAttribute="top" secondItem="9qL-m9-7B4" secondAttribute="bottom" constant="10" id="tsk-gq-Cnh"/>
+                            <constraint firstItem="MVB-6l-Sai" firstAttribute="centerX" secondItem="v22-cg-D6d" secondAttribute="centerX" id="xL1-Zq-BMn"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UCP-mq-18k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2526" y="370"/>
+        </scene>
+    </scenes>
+</document>
