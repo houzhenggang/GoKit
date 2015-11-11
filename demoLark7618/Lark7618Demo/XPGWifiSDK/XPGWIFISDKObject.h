@@ -125,38 +125,55 @@ typedef NS_ENUM(NSInteger, XPGWIFISDKObjectUserType) {
 @protocol XPGWIFISDKObjectDelegate <NSObject>
 
 @optional
-/**
- * 返回用户注册后的状态
- */
+
+/** 用户注册操作的回调 */
 - (void)didUserLoginStatus:(XPGWIFISDKObjectStatus)status;
 
+/** 用户退出操作的回调 */
 - (void)didUserLogoutStatus:(XPGWIFISDKObjectStatus)status;
 
-/**
- * 返回从云端获取的设备列表：在线设备，新设备和离线设备
+/** 
+ 返回从云端获取的设备列表：在线设备，新设备和离线设备 
+ @param onLineDevices 在线设备列表
+ @param newDevices 新设备列表
+ @param offLineDevices 离线设备列表
  */
 - (void)didLoadDeviceList:(nonnull NSMutableArray *)onLineDevices newDevices:(nonnull NSMutableArray *)newDevices offLineDevices:(nonnull NSMutableArray *)offLineDevices;
 
+/** 设备绑定操作的回调 */
 - (void)didDeviceBindStatus:(XPGWIFISDKObjectStatus)status;
 
+/** 设备登录操作的回调 */
 - (void)didDeviceLoginStatus:(XPGWIFISDKObjectStatus)status;
 
+/** 设备解绑操作的回调 */
 - (void)didDeviceUnbindStatus:(XPGWIFISDKObjectStatus)status;
 
+/** 接收到设备端发出的数据的回调 */
 - (void)didDeviceReceivedData:(nullable NSDictionary *)data status:(XPGWIFISDKObjectStatus)status;
 
+/** 设备断开连接的回调 */
 - (void)didDeviceDisconnected:(nullable XPGWifiDevice *)device;
 
+/** 
+ 接收到服务器返回的图片验证码回调
+ @param captchaURL 图片的url
+ */
 - (void)didRequsetVerifyPictureStatus:(XPGWIFISDKObjectStatus)status captchaURL:(nullable NSString*)captchaURL;
 
+/** 获取手机验证码操作的回调 */
 - (void)didGetPhoneVerifyCodeStatus:(XPGWIFISDKObjectStatus)status;
 
+/** 更改帐号密码操作的回调 */
 - (void)didChangeAccountPasswordStatus:(XPGWIFISDKObjectStatus)status;
 
+/** 注册帐号的回调 */
 - (void)didRegisterAccountStatus:(XPGWIFISDKObjectStatus)status;
 
+/** 配置WIFI参数回调 */
 - (void)didConfigWIFIStatus:(XPGWIFISDKObjectStatus)status;
 
+/** 获取设备端扫描到SSID列表操纵的回调 */
 - (void)didLoadSSIDList:(nonnull NSArray *)SSIDList status:(XPGWIFISDKObjectStatus)status;
 
 @end
@@ -176,55 +193,117 @@ typedef NS_ENUM(NSInteger, XPGWIFISDKObjectUserType) {
 
 @property (readonly, nonatomic) BOOL isRegisteredUser;  //匿名用户是否已注册
 
+/** 获取该类的单例 */
 + (nullable instancetype)shareInstance;
 
+/** 启动XPGWifiSDK */
 - (void)start;
 
-- (void)initAccount;
+/** 
+ 使用电话号码注册帐号
+ @param phone 手机号码
+ @param password 设置的帐号密码
+ @param code 手机收到的短信验证码
+ */
+- (void)registerAccountWithPhoneNumber:(nonnull NSString *)phone password:(nonnull NSString *)password messageCode:(nonnull NSString *)code;
 
+/** 
+ 使用用户名注册帐号
+ @param name 用户名
+ @param password 设置的帐号密码
+ */
+- (void)registerAccountWithUserName:(nonnull NSString *)name password:(nonnull NSString *)password;
+
+/** 
+ 使用邮箱注册帐号 
+ @param email 邮箱地址
+ @param password 设置的帐号密码
+ */
+- (void)registerAccountWithEmail:(nonnull NSString *)email password:(nonnull NSString *)password;
+
+/** 
+ 更改手机号账户的密码
+ @param phone 手机号
+ @param password 新密码
+ @param code 手机受到的验证码
+ */
+- (void)changePasswordWithAccountPhone:(nonnull NSString *)phone newPassword:(nonnull NSString *)password messageCode:(nonnull NSString *)code;
+
+/** 
+ 更改邮箱账户的密码
+ @param email 邮箱地址
+ */
+- (void)changePasswordWithAccountEmail:(nonnull NSString *)email;
+
+/** 
+ 更改账户密码
+ @param oldPassword 旧密码
+ @param newPassword 新密码
+ */
+- (void)changeUserPassword:(nonnull NSString *)oldPassword newPassword:(nonnull NSString *)newPasswoard;
+
+/** 
+ 账户登录
+ @param name 账户名
+ @param password 密码
+ */
 - (void)userLoginWithUserName:(nonnull NSString *)name password:(nonnull NSString *)password;
 
+/** 帐号退出 */
 - (void)userLogout;
 
+/** 请求图片验证码 */
 - (void)requestVerifyPicture;
 
+/**
+ 用图片验证码获取手机验证码
+ @param phoneNumber 手机号码
+ @param code 图片验证码
+ */
 - (void)getPhoneVerifyCodeWithPhoneNumber:(nonnull NSString *)phoneNumber pictureVerifyCode:(nonnull NSString *)code;
 
+/** 判断手机WIFI当前是否已连接到工作在SoftAP模式的设备上 */
 - (BOOL)isSoftAPMode;
 
-/**
- * 自动登录：普通用户优先，没有普通用户才自动登录匿名用户
- */
-- (void)userLogin;
-
-/**
- * 当WIFI在SoftAP模式下时，配置WLAN的SSID和Password
+/** 
+ 使用SoftAP配置设备的SSID和Password
+ @param ssid WI-FI的SSID
+ @param password WIFI的密码
  */
 - (void)configSoftAPModeSSID:(nonnull NSString *)ssid andPassword:(nonnull NSString *)password;
 
+/** 
+ 使用AirLink配置设备的SSID和password
+ @param ssid WI-FI的SSID
+ @param password WIFI的password
+ @param time 配置超时时间
+ */
 - (void)configureAirLinkModeSSID:(nonnull NSString *)ssid andPassword:(nonnull NSString *)password timeout:(int)time;
 
+/** 获取设备端扫描的SSID列表 */
 - (void)loadSSID;
 
-/**
- * 从云端获取设备列表
- */
+/** 从云端获取设备列表 */
 - (void)loadBoundDevices;
 
-/**
- * 登录设备
- */
+/** 登录设备selectedDevice */
 - (void)deviceLogin;
 
+/** selectedDevice是否已与当前的帐号绑定 */
 - (BOOL)deviceIsBind;
 
-/**
- * 绑定设备
- */
+/** 将selectedDevice绑定到当前帐号 */
 - (void)deviceBind;
 
+/** 
+ 将设备绑定到当前帐号，当前仅用于二维码扫描到设备后的绑定
+ @param did 设备的id
+ @param passcode
+ @param remark
+ */
 - (void)bindDeviceId:(nonnull NSString *)did passcode:(nonnull NSString *)passcode remark:(nonnull NSString *)remark;
 
+/** 将selectedDevice与当前帐号解绑 */
 - (void)deviceUnbind;
 
 @end

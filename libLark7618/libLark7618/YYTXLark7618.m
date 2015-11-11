@@ -20,11 +20,9 @@ static YYTXLark7618 *lark7618instance = nil;
 
 @implementation YYTXLark7618
 
-+ (instancetype)shareInstance {
-    
++ (instancetype)sharedInstance {
     if(lark7618instance == nil) {
-        
-        lark7618instance = [[super allocWithZone:nil] init];  //super 调用allocWithZone
+        lark7618instance = [[super allocWithZone:nil] init];  // super 调用allocWithZone
     }
     
     return lark7618instance;
@@ -32,18 +30,14 @@ static YYTXLark7618 *lark7618instance = nil;
 
 
 + (id)allocWithZone:(NSZone *)zone {
-    
-    return [YYTXLark7618 shareInstance];
+    return [YYTXLark7618 sharedInstance];
 }
 
-
 - (id)copy {
-    
     return self;
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    
     return self;
 }
 
@@ -62,11 +56,13 @@ static YYTXLark7618 *lark7618instance = nil;
     [_player play];
 }
 
+/** 停止发送FSK声波 */
 - (void)stopSending {
     
     [_player stop];
 }
 
+/** 发送完成 */
 - (void)audioQueuePlayFinished {
     
     if ([_delegate respondsToSelector:@selector(didFSKSendingComplete)]) {

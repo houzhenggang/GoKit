@@ -10,12 +10,15 @@
 
 @protocol AudioQueuePlayerDelegate <NSObject>
 
+/**
+ 播放完成回调
+ */
 - (void)audioQueuePlayFinished;
 
 @end
 
 @interface AudioQueuePlayer : NSObject
-@property (nonatomic, retain) NSData *stream;
+@property (nonatomic, retain) NSData *stream; // 需要播放的数据流
 @property (nonatomic, retain) id <AudioQueuePlayerDelegate> delegate;
 
 - (instancetype)initWithData:(NSData *)data delegate:(id)delegate;

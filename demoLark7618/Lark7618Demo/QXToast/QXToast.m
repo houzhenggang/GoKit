@@ -25,20 +25,24 @@
     CGFloat maxMessageheight = maxContentViewHeight-topSpaceToSuperView-bottomSpaceToSuperView;
     CGSize maxSize = (CGSize){maxMessageWidth, maxMessageheight};
     
+    /* 计算字符串所占用空间 */
     CGRect messageRect;
     messageRect = [message boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:messageFont} context:nil];
     messageRect.size.height += 1;
+    messageRect.size.width += 1;
     messageRect.origin = (CGPoint){0, 0};
     
+    /* 初始化位置 */
     CGRect contentViewRect = messageRect;
     contentViewRect.size.height += (topSpaceToSuperView+bottomSpaceToSuperView);
     contentViewRect.size.width = maxContentViewWidth;
-    contentViewRect.origin.y = -contentViewRect.size.height;
+    contentViewRect.origin.y = -contentViewRect.size.height; // 隐藏于屏幕上方
     contentViewRect.origin.x = 0;
 
+    /* 显示内容初始化 */
     UIView *contentView = [[UIView alloc] init];
     [contentView setFrame:contentViewRect];
-    [contentView setBackgroundColor:[UIColor colorWithWhite:.0f alpha:0.7]];
+    [contentView setBackgroundColor:[UIColor colorWithWhite:.0f alpha:0.9]];
     [contentView setAlpha:.0f];
     
     UILabel *labelMessage = [[UILabel alloc] init];
@@ -63,14 +67,17 @@
     
     CGAffineTransform translate = CGAffineTransformMakeTranslation(0.0f, contentViewRect.size.height);
 
+    /* 显示动画 */
     [UIView animateWithDuration:.5f animations:^{
             
         NSLog(@"%s labelFrame:%@", __func__, NSStringFromCGRect(labelMessage.bounds));
-            
+        
+        /* 从屏幕上方往下显示 */
         contentView.transform = translate;
         [contentView setAlpha:1.0f];
     } completion:^(BOOL finished) {
-            
+        
+        /* 3秒后收回到屏幕上方 */
         [UIView animateWithDuration:.5f delay:3.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 
             contentView.transform = CGAffineTransformIdentity;

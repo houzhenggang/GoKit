@@ -46,7 +46,11 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (1 == indexPath.section) {
+    if (0 == indexPath.section) {
+        if (0 == indexPath.row) {
+            
+        }
+    } else if (1 == indexPath.section) {
         if (0 == indexPath.row) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"您确定要注销当前账号?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
             [alertView showAlertViewWithCompleteBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -70,6 +74,7 @@
     [_hud setHidden:YES];
     
     if (XPGWIFISDKObjectStatusSuccessful == status) {
+        /* 返回到用户登陆界面 */
         for (UIViewController *vc in self.navigationController.viewControllers) {
             if ([vc isKindOfClass:[UserLoginViewController class]]) {
                 [self.navigationController popToViewController:vc animated:YES];

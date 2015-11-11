@@ -43,8 +43,8 @@
     _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onRemainTimer) userInfo:nil repeats:YES];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     
     [_timer invalidate];
     _timer = nil;
@@ -58,6 +58,7 @@
     [self addRemainElement:0];
     
     [[[XPGWIFISDKObject shareInstance] selectedDevice] write:[IoTDevice setLedSwitch:![sender isSelected]]];
+    [sender setSelected:![sender isSelected]];
 }
 
 - (IBAction)buttonLightingRedDecClicked:(UIButton *)sender {

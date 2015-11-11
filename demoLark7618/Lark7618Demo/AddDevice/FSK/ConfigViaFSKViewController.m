@@ -25,6 +25,7 @@
     
     [self.navigationItem setTitle:NSLocalizedStringFromTable(@"ModeFSK", @"LocalizedSimpleChinese", nil)];
     
+    /* 默认配置手机当前正在连接的网络 */
     NSString *ssid = [NetworkMonitor currentWifiSSID];
     if (nil != ssid) {
         [_textfieldSSID setText:ssid];
@@ -43,9 +44,8 @@
 }
 
 - (IBAction)barbuttonItemNextStepClicked:(id)sender {
-    
     if (_textfieldSSID.text.length <= 0) {
-        return;
+        return; // SSID不可留空
     }
     
     CheckingViewController *checkingVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CheckingViewController"];

@@ -19,11 +19,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>QXToast.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Reachability.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,17 +32,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2FE36D9932A83858A348B22D5F0C0491</key>
+		<key>1831C4F110A5327F94C4938D7E64DAAA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4343ADF6892A06CAFC7CC8AF35327192</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4A163D04A7168F8CDED5AA9CE35EA189</key>
+		<key>48334247C4A9A78618498AF4BDFF3904</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,7 +47,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8BC3A630B2AFB53AAA4A9BF123AE0077</key>
+		<key>7B2ED9A5515E454D1628386045AA11CE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

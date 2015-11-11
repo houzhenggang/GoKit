@@ -1,14 +1,14 @@
 //
-//  IoTDevice.h
+//  IoT2683fb9fca1a49d1a052880c7963d25e.h
 //  Lark7618Demo
 //
-//  Created by TTS on 15/10/27.
+//  Created by TTS on 15/11/2.
 //  Copyright © 2015年 yytx. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface IoT6f3074fe43894547a4f1314bd7e3ae0b : NSObject
+@interface IoT2683fb9fca1a49d1a052880c7963d25e : NSObject
 
 /** 获取设备端状态 */
 + (NSDictionary *)getDeviceStatus;
@@ -58,10 +58,11 @@
 /** 获取红外值 */
 + (NSInteger)infrade;
 
-/** 
+/**
  解析从设备端收到的数据
  @return YES 表示收到设备端返回的有效数据，NO表示收到的数据无效
  */
 + (BOOL)parseReceivedData:(NSDictionary *)data;
+
 
 @end

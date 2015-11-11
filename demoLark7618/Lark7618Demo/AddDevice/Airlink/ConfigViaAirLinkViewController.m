@@ -46,6 +46,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    /* 默认配置手机当前正在连接的网络 */
     NSString *ssid = [NetworkMonitor currentWifiSSID];
     if (nil != ssid) {
         [_textfieldSSID setText:ssid];
@@ -74,6 +75,7 @@
     _hud.labelText = @"正在配置...";
     [_hud show:YES];
     
+    // 通过AirLink方式配置设备的WI-FI网络
     [[XPGWIFISDKObject shareInstance] configureAirLinkModeSSID:_textfieldSSID.text andPassword:_textfieldKey.text timeout:60];
 }
 

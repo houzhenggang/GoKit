@@ -2,12 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/tts/Lark/Lark7618/demoLark7618/Lark7618Demo.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:demoLark7618/Pods/Pods.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:libLark7618/YYTXLark7618.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/tts/Lark/Lark7618/demoLark7618/Lark7618Demo.xcodeproj">
    </FileRef>
 </Workspace>

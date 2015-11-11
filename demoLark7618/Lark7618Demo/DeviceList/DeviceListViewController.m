@@ -56,10 +56,11 @@
     [_XpgObject setDelegate:self];
     
     if (nil != _XpgObject.selectedDevice) {
+        /* 如果已经选择过设备，则先断开连接 */
         [_XpgObject.selectedDevice disconnect];
     }
     
-    [self getDevicesList];
+    [self getDevicesList]; // 每次进入到设备列表界面则重新获取获取设备列表
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -73,6 +74,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+/** 跳转到用户账户界面 */
 - (void)gotoUserAccountVC {
     UserAccountViewController *userAccountVC = [[UIStoryboard storyboardWithName:@"UserAccount" bundle:nil] instantiateViewControllerWithIdentifier:@"UserAccountViewController"];
     if (nil != userAccountVC) {
@@ -87,7 +89,7 @@
     _hud.labelText = NSLocalizedStringFromTable(@"gettingDeviceList", @"LocalizedSimpleChinese", nil);
     [_hud show:YES];
     
-    [_XpgObject loadBoundDevices];
+    [_XpgObject loadBoundDevices]; // 从云端加载设备列表
 }
 
 #pragma mark - Table view data source
@@ -163,19 +165,20 @@
     
     if (0 == indexPath.section) {
         if (_arrayOnLineDevices.count > 0) {
-            device = _arrayOnLineDevices[indexPath.row];
+            device = _arrayOnLineDevices[indexPath.row]; // 在线设备
         }
     } else if (1 == indexPath.section) {
         if (_arrayOffLineDevices.count > 0) {
-            device = _arrayOffLineDevices[indexPath.row];
+            device = _arrayOffLineDevices[indexPath.row]; // 离线设备
         }
     } else if (2 == indexPath.section) {
         if (_arrayNewDevices.count > 0) {
-            device = _arrayNewDevices[indexPath.row];
+            device = _arrayNewDevices[indexPath.row]; // 新设备－－未绑定的设备
         }
     }
     
     if (nil == device) {
+        /* 无设备 */
         UILabel *label = [[UILabel alloc] init];
         [label setTextColor:[UIColor lightGrayColor]];
         [label setText:noDevice];
@@ -191,7 +194,7 @@
         [cell setUserInteractionEnabled:NO];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     } else {
-        
+        /* 有设备 */
         UIImageView *imageView = [[UIImageView alloc] init];
         [imageView setImage:[UIImage imageNamed:@"MonitorHumidity.png"]];
         [imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -203,7 +206,8 @@
         
         UILabel *labelStatus = [[UILabel alloc] init];
         if(device.isLAN) {
-            if(![device isBind:_XpgObject.uid]) {
+            /* 局域网 */
+            if(![device isBind:_XpgObject.uid]) { // 是否与当前用户绑定
                 labelStatus.text = @"未绑定";
             } else {
                 labelStatus.text = @"局域网已连接";
@@ -211,7 +215,8 @@
             }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else {
-            if(!device.isOnline) {
+            /* 非局域网 */
+            if(!device.isOnline) { // 是否在线
                 labelStatus.textColor = [UIColor grayColor];
                 labelStatus.text = @"离线";
             } else {
@@ -242,14 +247,17 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (0 == indexPath.section) {
+        /* 在线设备 */
         if (_arrayOnLineDevices.count > 0) {
             _XpgObject.selectedDevice = _arrayOnLineDevices[indexPath.row];
         }
     } else if (1 == indexPath.section) {
+        /* 离线设备 */
         if (_arrayOffLineDevices.count > 0) {
             _XpgObject.selectedDevice = _arrayOffLineDevices[indexPath.row];
         }
     } else if (2 == indexPath.section) {
+        /* 新设备－－未绑定的设备 */
         if (_arrayNewDevices.count > 0) {
             _XpgObject.selectedDevice = _arrayNewDevices[indexPath.row];
         }
@@ -260,20 +268,26 @@
     }
     
     if ([_XpgObject.selectedDevice.passcode length]) {
+        /* 已绑定的设备则直接登录 */
         _hud.labelText = [NSString stringWithFormat:@"正在登录%@...", _XpgObject.selectedDevice.macAddress];
         [_hud show:YES];
-        [_XpgObject deviceLogin];
+        
+        [_XpgObject deviceLogin]; // 登录设备
     } else {
-        if(_XpgObject.selectedDevice.did.length == 0) {
+        /* 未绑定的设备 */
+        if(_XpgObject.selectedDevice.did.length == 0) { // 是否已在服务器上注册
             [[[UIAlertView alloc] initWithTitle:@"提示" message:@"此设备尚未与云端注册，无法绑定。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
         } else {
+            /* 已在服务器上注册则直接绑定 */
             _hud.labelText = [NSString stringWithFormat:@"正在绑定%@...", _XpgObject.selectedDevice.macAddress];
             [_hud show:YES];
-            [_XpgObject deviceBind];
+            
+            [_XpgObject deviceBind]; // 绑定设备
         }
     }
 }
 
+/** 跳转到添加设备界面 */
 - (void)barButtonAddDeviceClicked {
     AddDeviceViewController *addDeviceVC = [[UIStoryboard storyboardWithName:@"AddDevice" bundle:nil] instantiateViewControllerWithIdentifier:@"AddDeviceViewController"];
     if (nil != addDeviceVC) {
@@ -287,9 +301,9 @@
 
     NSLog(@"%s", __func__);
     
-    _arrayOnLineDevices = onLineDevices;
-    _arrayNewDevices = newDevices;
-    _arrayOffLineDevices = offLineDevices;
+    _arrayOnLineDevices = onLineDevices; // 在线设备
+    _arrayNewDevices = newDevices; // 新设备－－未绑定的设备
+    _arrayOffLineDevices = offLineDevices; // 离线设备
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
@@ -306,6 +320,7 @@
     [_hud hide:YES];
 
     if (XPGWIFISDKObjectStatusSuccessful == status) {
+        /* 设备登录成功跳转到主菜单界面 */
         MainMenuViewController *mainMenuVC = [[MainMenuViewController alloc] init];
         if (nil != mainMenuVC) {
             [self.navigationController pushViewController:mainMenuVC animated:YES];
@@ -324,13 +339,7 @@
         [_hud hide:YES];
     
         if (XPGWIFISDKObjectStatusSuccessful == status) {
-            NSMutableArray *arr = [NSMutableArray array];
-            for (XPGWifiDevice *device in _arrayOnLineDevices) {
-                [arr addObject:device.productKey];
-            }
-            for (XPGWifiDevice *device in _arrayOffLineDevices) {
-                [arr addObject:device.productKey];
-            }
+            /* 绑定成功刷新设备列表 */
             [self getDevicesList];
         } else {
             [QXToast showMessage:@"绑定失败"];

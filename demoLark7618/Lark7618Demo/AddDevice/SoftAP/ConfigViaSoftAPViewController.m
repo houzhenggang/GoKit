@@ -54,6 +54,7 @@
     
     [XPGWIFISDKObject shareInstance].delegate = self;
     
+    /* 每隔5秒从设备端获取一次SSID列表 */
     timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(loadSSID:) userInfo:nil repeats:YES];
 }
 
@@ -62,6 +63,7 @@
     
     [XPGWifiSDK sharedInstance].delegate = nil;
     
+    /* Disable timer */
     if(timer) {
         [timer invalidate];
         timer = nil;
@@ -72,7 +74,7 @@
     [super didReceiveMemoryWarning];
 }
 
-// 每隔 3 秒读取一次 SSID 列表
+/** 从设备端获取设备当前扫描到的SSID列表 */
 - (void)loadSSID:(NSTimer *)timer {
     
     [[XPGWIFISDKObject shareInstance] loadSSID];
@@ -116,7 +118,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if(indexPath.row == self.arraylist.count) {
-
+        /* 需要用户手动输入的SSID */
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"配置网络" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
         
@@ -140,11 +142,13 @@
                 
                 [timer setFireDate:[NSDate distantFuture]];
                 
+                // 通过SoftAP的方式给设备配置网络
                 [[XPGWIFISDKObject shareInstance] configSoftAPModeSSID:textfieldSSID.text andPassword:textfieldPass.text];
             }
             
         }];
     } else {
+        /* 配置的网络是当前设备已扫描到的SSID */
         XPGWifiSSID *ssid = self.arraylist[indexPath.row];
         
         //配置AP
@@ -172,6 +176,7 @@
                 
                 [timer setFireDate:[NSDate distantFuture]];
                 
+                // 通过SoftAP的方式给设备配置网络
                 [[XPGWIFISDKObject shareInstance] configSoftAPModeSSID:textfieldSSID.text andPassword:textfieldPass.text];
             }
         }];

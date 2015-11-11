@@ -42,34 +42,45 @@ typedef NS_ENUM(NSInteger, IoTDeviceCommand) {
 
 @implementation IoT6f3074fe43894547a4f1314bd7e3ae0b
 
+/** 获取设备端状态 */
 + (NSDictionary *)getDeviceStatus {
     return @{DATA_CMD: @(IoTDeviceCommandRead)};
 }
 
+/** 设置LED灯开关 */
 + (NSDictionary *)setLedSwitch:(NSInteger)ledS {
     return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY: @{DATA_ATTR_LED_R_ONOFF:@(ledS)}};
 }
 
+/** 设置红灯亮度 */
 + (NSDictionary *)setLedRValue:(NSInteger)ledRValue {
     return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY: @{DATA_ATTR_LED_R:@(ledRValue)}};
 }
 
+/** 设置绿灯亮度 */
 + (NSDictionary *)setLedGValue:(NSInteger)ledGValue {
     return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY: @{DATA_ATTR_LED_G:@(ledGValue)}};
 }
 
+/** 设置蓝灯亮度 */
 + (NSDictionary *)setLedBValue:(NSInteger)ledBValue {
     return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY: @{DATA_ATTR_LED_B:@(ledBValue)}};
 }
 
+/** 设置点击转速 */
 + (NSDictionary *)setMotolSpeed:(NSInteger)speed {
     return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY: @{DATA_ATTR_MOTORSPEED:@(speed)}};
 }
 
+/** 
+ 设置红外
+ @note 无效，设备端硬件尚未支持
+ */
 + (NSDictionary *)setInfrade:(NSInteger)infrade {
     return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY: @{DATA_ATTR_IR: @(infrade)}};
 }
 
+/** 解析从设备端收到的数据 */
 + (BOOL)parseReceivedData:(NSDictionary *)data {
     NSString *str = @"";
     BOOL needToDisplay = NO;
@@ -142,6 +153,7 @@ typedef NS_ENUM(NSInteger, IoTDeviceCommand) {
         return NO;
     }
     
+    /** 解析各外设的状态 */
     NSString *ledRonOff = [attributes valueForKey:DATA_ATTR_LED_R_ONOFF];
     NSString *ledR = [attributes valueForKey:DATA_ATTR_LED_R];
     NSString *ledG = [attributes valueForKey:DATA_ATTR_LED_G];
@@ -164,34 +176,42 @@ typedef NS_ENUM(NSInteger, IoTDeviceCommand) {
     return YES;
 }
 
+/** 获取LED灯的开关状态 */
 + (NSInteger)ledSwitch {
     return iLedS;
 }
 
+/** 获取红色LED的亮度值 */
 + (NSInteger)ledRed {
     return iLedR;
 }
 
+/** 获取绿色LED的亮度值 */
 + (NSInteger)ledGreen {
     return iLedG;
 }
 
+/** 获取蓝色LED的亮度值 */
 + (NSInteger)ledBlue {
     return iLedB;
 }
 
+/** 获取电机的转速 */
 + (NSInteger)motolSpeed {
     return iMotorSpeed;
 }
 
+/** 获取温度值 */
 + (NSInteger)temperature {
     return iTemperature;
 }
 
+/** 获取湿度值 */
 + (NSInteger)humidity {
     return iHumidity;
 }
 
+/** 获取红外值 */
 + (NSInteger)infrade {
     return iIr;
 }

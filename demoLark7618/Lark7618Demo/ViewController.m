@@ -10,7 +10,6 @@
 #import "XPGWIFISDKObject.h"
 #import "NetUnreachableViewController.h"
 #import "SoftAPModeViewController.h"
-//#import "DeviceListViewController.h"
 #import "NetworkMonitor.h"
 #import "UserLoginViewController.h"
 
@@ -47,6 +46,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
+    /* 检查手机是否打开WIFI */
     if (![NetworkMonitor isEnableWIFI]) {
         NetUnreachableViewController *netUnreachableVC = [self.storyboard instantiateViewControllerWithIdentifier:@"NetUnreachableViewController"];
         if (nil != netUnreachableVC) {
@@ -54,12 +54,15 @@
         }
     }
     
+    /* 判断设备设备是否处于SoftAP模式 */
     if ([[XPGWIFISDKObject shareInstance] isSoftAPMode]) {
+        /* 如果设备处于SoftAP模式，且手机已连接到设备的SSID，则进入网络配置模式 */
         SoftAPModeViewController *softAPModeVC = [[UIStoryboard storyboardWithName:@"SoftAP" bundle:nil] instantiateViewControllerWithIdentifier:@"SoftAPModeViewController"];
         if (nil != softAPModeVC) {
             [self.navigationController pushViewController:softAPModeVC animated:YES];
         }
     } else {
+        /* 否则进入正常工作模式－－用户登陆界面 */
         UserLoginViewController *userLoginVC = [[UIStoryboard storyboardWithName:@"UserAccount" bundle:nil] instantiateViewControllerWithIdentifier:@"UserLoginViewController"];
         if (nil != userLoginVC) {
             [self.navigationController pushViewController:userLoginVC animated:YES];

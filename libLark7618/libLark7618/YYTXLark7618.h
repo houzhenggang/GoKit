@@ -23,16 +23,19 @@
 @interface YYTXLark7618 : NSObject
 @property (nonatomic, retain, nonnull) id<YYTXLark7618Delegate> delegate;
 
-+ (nullable instancetype)shareInstance;
+/** 获取单例 */
++ (nullable instancetype)sharedInstance;
 
 /**
- * 功能：将SSID和密码以声波的方式发送出去
- * 参数：ssid长度不可以为0，password长度可以为0
+ 将SSID和密码以声波的方式发送出去
+ @param ssid WI-FI网络名
+ @param password Wi-Fi网络的密码
+ @note ssid长度不可为0，password的长度可以为0
  */
 - (void)sendSSID:(nonnull NSString *)ssid password:(nonnull NSString *)password;
 
 /**
- * 功能：停止发送FSK声波
+ 停止发送FSK声波
  */
 - (void)stopSending;
 

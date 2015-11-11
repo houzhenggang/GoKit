@@ -1,12 +1,12 @@
 //
-//  IoTffaf0cac3d244d07b9da78b5deea8b0b.m
+//  IoT2683fb9fca1a49d1a052880c7963d25e.m
 //  Lark7618Demo
 //
-//  Created by TTS on 15/10/29.
+//  Created by TTS on 15/11/2.
 //  Copyright © 2015年 yytx. All rights reserved.
 //
 
-#import "IoTffaf0cac3d244d07b9da78b5deea8b0b.h"
+#import "IoT2683fb9fca1a49d1a052880c7963d25e.h"
 #import "QXToast.h"
 
 static NSInteger iLedS = 0;
@@ -27,7 +27,6 @@ typedef NS_ENUM(NSInteger, IoTDeviceCommand) {
 
 #define DATA_CMD                        @"cmd"      //命令
 #define DATA_ENTITY                     @"entity0"  //实体
-#define DATA_GENERAL                    @"general"  // 扩展字段
 #define DATA_ATTR_LED_R_ONOFF           @"LED_OnOff"    //属性：LED R开关
 #define DATA_ATTR_LED_COLOR             @"LED_Color"    //属性：LED 组合颜色
 #define DATA_ATTR_LED_R                 @"LED_R"    //属性：LED R值
@@ -41,34 +40,34 @@ typedef NS_ENUM(NSInteger, IoTDeviceCommand) {
 #define DATA_FAULTS                     @"faults" // 设备错误
 #define DATA_DATA                       @"data"
 
-@implementation IoTffaf0cac3d244d07b9da78b5deea8b0b
+@implementation IoT2683fb9fca1a49d1a052880c7963d25e
 
 + (NSDictionary *)getDeviceStatus {
     return @{DATA_CMD: @(IoTDeviceCommandRead)};
 }
 
 + (NSDictionary *)setLedSwitch:(NSInteger)ledS {
-    return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY:@{DATA_GENERAL:[self encodeWithBase64:@{DATA_ATTR_LED_R_ONOFF:@(ledS)}]}};
+    return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY: @{DATA_ATTR_LED_R_ONOFF:@(ledS)}};
 }
 
 + (NSDictionary *)setLedRValue:(NSInteger)ledRValue {
-    return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY:@{DATA_GENERAL:[self encodeWithBase64:@{DATA_ATTR_LED_R:@(ledRValue)}]}};
+    return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY: @{DATA_ATTR_LED_R:@(ledRValue)}};
 }
 
 + (NSDictionary *)setLedGValue:(NSInteger)ledGValue {
-    return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY:@{DATA_GENERAL:[self encodeWithBase64:@{DATA_ATTR_LED_G:@(ledGValue)}]}};
+    return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY: @{DATA_ATTR_LED_G:@(ledGValue)}};
 }
 
 + (NSDictionary *)setLedBValue:(NSInteger)ledBValue {
-    return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY:@{DATA_GENERAL:[self encodeWithBase64:@{DATA_ATTR_LED_B:@(ledBValue)}]}};
+    return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY: @{DATA_ATTR_LED_B:@(ledBValue)}};
 }
 
 + (NSDictionary *)setMotolSpeed:(NSInteger)speed {
-    return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY:@{DATA_GENERAL:[self encodeWithBase64:@{DATA_ATTR_MOTORSPEED:@(speed)}]}};
+    return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY: @{DATA_ATTR_MOTORSPEED:@(speed)}};
 }
 
 + (NSDictionary *)setInfrade:(NSInteger)infrade {
-    return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY:@{DATA_GENERAL:[self encodeWithBase64:@{DATA_ATTR_IR: @(infrade)}]}};
+    return @{DATA_CMD: @(IoTDeviceCommandWrite), DATA_ENTITY: @{DATA_ATTR_IR: @(infrade)}};
 }
 
 + (BOOL)parseReceivedData:(NSDictionary *)data {
@@ -92,6 +91,7 @@ typedef NS_ENUM(NSInteger, IoTDeviceCommand) {
         if (needToDisplay) {
             [QXToast showMessage:str];
         }
+        
     }
     
     /** 设备端错误 */
@@ -194,28 +194,6 @@ typedef NS_ENUM(NSInteger, IoTDeviceCommand) {
 
 + (NSInteger)infrade {
     return iIr;
-}
-
-/** 将NSDictionary转为Base64编码的NSString */
-+ (NSString *)encodeWithBase64:(NSDictionary *)origin {
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:origin options:NSJSONWritingPrettyPrinted  error:nil];
-    NSString *encodeResult = [jsonData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
-    
-    NSLog(@"encodeResult:%@",encodeResult);
-    
-    [self decodeBase64:encodeResult];
-    
-    return encodeResult;
-}
-
-/** 将Base64编码的NSString转为NSDictionary */
-+ (NSDictionary *)decodeBase64:(NSString *)origin {
-    NSData *decodeData = [[NSData alloc] initWithBase64EncodedString:origin options:0];
-    NSDictionary *decodeResult = [NSJSONSerialization JSONObjectWithData:decodeData options:NSJSONReadingMutableContainers error:nil];
-    
-    NSLog(@"%s decodeResult:%@", __func__, [[NSString alloc] initWithData:decodeData encoding:NSASCIIStringEncoding]);
-
-    return decodeResult;
 }
 
 @end

@@ -23,6 +23,7 @@
     [super didReceiveMemoryWarning];
 }
 
+/** 使用APP的方式配置网络 */
 - (IBAction)buttonAppConfigClicked:(id)sender {
 
     ConfigViaSoftAPViewController *configViaSoftAPVC = [[ConfigViaSoftAPViewController alloc] init];
@@ -31,8 +32,10 @@
     }
 }
 
+/** 使用WebConfig的方式配置网络 */
 - (IBAction)buttonBrowserConfigClicked:(UIButton *)sender {
 
+    // 打开浏览器
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[sender titleForState:UIControlStateNormal]]];
 }
 

@@ -24,9 +24,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserRegisterViewController : UIViewController<UITextFieldDelegate>
+@interface AccountPhoneViewController : UIViewController<UITextFieldDelegate>
 
 //忘记密码模式，默认是注册模式
 @property (nonatomic, assign) BOOL isForget;
+@property (nonatomic, retain) NSString *phone;
 
 @end

@@ -13,6 +13,7 @@
 static NSString *const IOT_APPKEY = @"a8c99b3da6b24dfba599bf671ab72669";
 static NSString *const IOT_PRODUCT1 = @"6f3074fe43894547a4f1314bd7e3ae0b";
 static NSString *const IOT_PRODUCT2 = @"ffaf0cac3d244d07b9da78b5deea8b0b";
+static NSString *const IOT_PRODUCT3 = @"2683fb9fca1a49d1a052880c7963d25e";
 static NSString *const AppSecret = @"17ad9b0c76dc4adf9e195be3c215f59b";
 
 static XPGWIFISDKObject *xpgObjectInstance = nil;
@@ -84,44 +85,59 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
 #pragma XPGWifiSDK 方法
 
 - (void)start {
-
-    // 初始化 Wifi SDK
-    [XPGWifiSDK startWithAppID:IOT_APPKEY];
-            
-    // 为 Soft AP 模式设置 SSID 名。如果没设置，默认值是 XPG-GAgent, XPG_GAgent
-//    [XPGWifiSDK registerSSIDs:@"XPG-GAgent", @"XPG_GAgent", nil];
-            
-    // 设置日志分级、日志输出文件、是否打印二进制数据
-//    [XPGWifiSDK setLogLevel:XPGWifiLogLevelAll logFile:@"logfile.txt" printDataLevel:YES];
-            
-    // 设置 SDK Delegate
-    [XPGWifiSDK sharedInstance].delegate = self;
+    [XPGWifiSDK startWithAppID:IOT_APPKEY]; // 初始化 Wifi SDK
+    [XPGWifiSDK sharedInstance].delegate = self; // 设置 SDK Delegate
 }
 
-- (void)initAccount {
-    
-    if(!self.isRegisteredUser) {
-        [[XPGWifiSDK sharedInstance] userLoginAnonymous]; // 如果未注册匿名用户，系统会自动注册一个匿名用户
-    } else {
-        [self userLogin]; // 用户已注册，直接登录
-    }
+#pragma 账户管理
+
+/** 用手机号注册 */
+- (void)registerAccountWithPhoneNumber:(NSString *)phone password:(NSString *)password messageCode:(NSString *)code {
+    [[XPGWifiSDK sharedInstance] registerUserByPhoneAndCode:phone password:password code:code];
 }
 
+/** 以用户名注册 */
+- (void)registerAccountWithUserName:(NSString *)name password:(NSString *)password {
+    [[XPGWifiSDK sharedInstance] registerUser:name password:password];
+}
+
+/** 用邮箱注册 */
+- (void)registerAccountWithEmail:(NSString *)email password:(NSString *)password {
+    [[XPGWifiSDK sharedInstance] registerUserByEmail:email password:password];
+}
+
+/** 更改手机号账户的密码 */
+- (void)changePasswordWithAccountPhone:(NSString *)phone newPassword:(NSString *)password messageCode:(NSString *)code {
+    [[XPGWifiSDK sharedInstance] changeUserPasswordByCode:phone code:code newPassword:password];
+}
+
+/** 更改邮箱账户的密码 */
+- (void)changePasswordWithAccountEmail:(NSString *)email {
+    [[XPGWifiSDK sharedInstance] changeUserPasswordByEmail:email];
+}
+
+/** 更改用户密码 */
+- (void)changeUserPassword:(NSString *)oldPassword newPassword:(NSString *)newPasswoard {
+    [[XPGWifiSDK sharedInstance] changeUserPassword:self.token oldPassword:oldPassword newPassword:newPasswoard];
+}
+
+/** 账号登陆 */
 - (void)userLoginWithUserName:(NSString *)name password:(NSString *)password {
-
     [[XPGWifiSDK sharedInstance] userLoginWithUserName:name password:password];
 }
 
+/** 账号退出 */
 - (void)userLogout {
-    
     [[XPGWifiSDK sharedInstance] userLogout:self.uid];
 }
 
+/** 获取手机验证码 */
 - (void)getPhoneVerifyCodeWithPhoneNumber:(NSString *)phoneNumber pictureVerifyCode:(NSString *)code {
 
     [[XPGWifiSDK sharedInstance] requestSendPhoneSMSCode:_captchatoken captchaId:_captchaId captchaCode:code phone:phoneNumber];
 }
 
+/** 请求图片验证码 */
 - (void)requestVerifyPicture {
     
     [[XPGWifiSDK sharedInstance] getCaptchaCode:AppSecret];
@@ -143,7 +159,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     
     NSLog(@"%s uid:%@, token:%@", __func__, self.uid, self.token);
 
-    [[XPGWifiSDK sharedInstance] getBoundDevicesWithUid:self.uid token:self.token specialProductKeys:IOT_PRODUCT1, IOT_PRODUCT2, nil];
+    [[XPGWifiSDK sharedInstance] getBoundDevicesWithUid:self.uid token:self.token specialProductKeys:IOT_PRODUCT1, IOT_PRODUCT2, IOT_PRODUCT3, nil];
 }
 
 #pragma XPGWifiDevice 方法
@@ -178,55 +194,44 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
 [[NSUserDefaults standardUserDefaults] valueForKey:key];
 
 - (void)setSelectedDevice:(XPGWifiDevice *)selectedDevice {
-    
     _selectedDevice.delegate = nil;
-
     _selectedDevice = selectedDevice;
     _selectedDevice.delegate = self;
 }
 
 - (void)setUsername:(NSString *)username {
-    
     DefaultSetValue(@"username", username);
 }
 
 - (void)setPassword:(NSString *)password {
-    
     DefaultSetValue(@"password", password);
 }
 
 - (NSString *)username {
-    
     return DefaultGetValue(@"username")
 }
 
 - (NSString *)password {
-    
     return DefaultGetValue(@"password")
 }
 
 - (void)setUid:(NSString *)uid {
-    
     DefaultSetValue(@"uid", uid)
 }
 
 - (void)setUserType:(XPGWIFISDKObjectUserType)userType {
-    
     DefaultSetValue(@"userType", @(userType))
 }
 
 - (void)setToken:(NSString *)token {
-    
     DefaultSetValue(@"token", token)
 }
 
 - (NSString *)uid {
-    
     return DefaultGetValue(@"uid")
 }
 
 - (NSString *)token {
-    
     return DefaultGetValue(@"token")
 }
 
@@ -241,7 +246,6 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
 }
 
 - (BOOL)isRegisteredUser {
-    
     return (self.uid.length > 0 && self.token.length > 0);
 }
 
@@ -275,9 +279,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     [[XPGWifiSDK sharedInstance] getSSIDList];
 }
 
-/**
- * 当WIFI在SoftAP模式下时，配置WLAN的SSID和Password
- */
+/** 当WIFI在SoftAP模式下时，配置WLAN的SSID和Password */
 - (void)configSoftAPModeSSID:(NSString *)ssid andPassword:(NSString *)password {
     
     [[XPGWifiSDK sharedInstance] setDeviceWifi:ssid key:password mode:XPGWifiSDKSoftAPMode softAPSSIDPrefix:@"XPG-GAgent" timeout:30 wifiGAgentType:nil];
@@ -294,7 +296,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
 
 #pragma mark - XPGWifiSDK delegate 回调
 
-/* 用户登录回调 */
+/** 用户登录回调 */
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didUserLogin:(NSNumber *)error errorMessage:(NSString *)errorMessage uid:(NSString *)uid token:(NSString *)token {
     // 登录成功，自动设置相关信息
     NSLog(@"-----------------------> UserLogin result:%d", [error intValue]);
@@ -324,7 +326,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     }
 }
 
-/* 用户注销账号回调 */
+/** 用户注销账号回调 */
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didUserLogout:(NSNumber *)error errorMessage:(NSString *)errorMessage {
 
     NSLog(@"%s errorCode:%d errorMessage:%@", __func__, error.integerValue, errorMessage);
@@ -340,7 +342,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     }
 }
 
-/* 获取图片验证码回调 */
+/** 获取图片验证码回调 */
 - (void)wifiSDK:(XPGWifiSDK *)wifiSDK didGetCaptchaCode:(NSError *)result token:(NSString*)token captchaId:(NSString *)captchaId captchaURL:(NSString*)captchaURL {
     
     NSLog(@"%s result:%@, token:%@ captchaId:%@ captchaURL:%@", __func__, result, token, captchaId, captchaURL);
@@ -357,7 +359,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     }
 }
 
-/* 请求发送短信验证码回调 */
+/** 请求发送短信验证码回调 */
 - (void)wifiSDK:(XPGWifiSDK *)wifiSDK didRequestSendPhoneSMSCode:(NSError*)result {
     
     NSLog(@"%s result:%@", __func__, result);
@@ -371,7 +373,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     }
 }
 
-/* 修改用户密码回调 */
+/** 修改用户密码回调 */
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didChangeUserPassword:(NSNumber *)error errorMessage:(NSString *)errorMessage {
     
     NSLog(@"%s error:%@ errorMessage:%@", __func__, error, errorMessage);
@@ -385,7 +387,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     }
 }
 
-/* 用户注册回调 */
+/** 用户注册回调 */
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didRegisterUser:(NSNumber *)error errorMessage:(NSString *)errorMessage uid:(NSString *)uid token:(NSString *)token {
     
     NSLog(@"%s error:%@ errorMessage:%@ uid:%@ token:%@", __func__, error, errorMessage, uid, token);
@@ -404,7 +406,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     }
 }
 
-/* 返回获取到的SSID列表，result为0时有效 */
+/** 返回获取到的SSID列表，result为0时有效 */
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didGetSSIDList:(NSArray *)ssidList result:(int)result {
     
     if ([_delegate respondsToSelector:@selector(didLoadSSIDList:status:)]) {
@@ -412,7 +414,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     }
 }
 
-/* 配置SSID和Password的回调，result为0时表示配置成功 */
+/** 配置SSID和Password的回调，result为0时表示配置成功 */
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didSetDeviceWifi:(XPGWifiDevice *)device result:(int)result {
     
     NSLog(@"%s result:%d", __func__, result);
@@ -423,7 +425,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     }
 }
 
-/* 从云端获取设备列表后回调 */
+/** 从云端获取设备列表后回调 */
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didDiscovered:(NSArray *)deviceList result:(int)result {
     
     NSLog(@"%s deviceList:%@", __func__, deviceList);
@@ -457,6 +459,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     }
 }
 
+/** 从服务器下载配置回调 */
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didUpdateProduct:(NSString *)product result:(int)result {
     
     NSLog(@"%s product:%@ result:%d", __func__, product, result);
@@ -468,7 +471,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
 
 #pragma XPGWifiDeviceDelegate
 
-/* 设备登录回调，result为0表示成功 */
+/** 设备登录回调，result为0表示成功 */
 - (void)XPGWifiDevice:(XPGWifiDevice *)device didLogin:(int)result {
     
     NSLog(@"%s device:%@ result:%d", __func__, device, result);
@@ -496,7 +499,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     }
 }
 
-/* 设备绑定的回调接口，返回设备绑定的结果 */
+/** 设备绑定的回调接口，返回设备绑定的结果 */
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didBindDevice:(NSString *)did error:(NSNumber *)error errorMessage:(NSString *)errorMessage {
     
     NSLog(@"%s did:%@ error:%@ errorMessage:%@", __func__, did, error, errorMessage);
@@ -512,7 +515,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     }
 }
 
-/* 设备解绑的回调接口，返回设备解绑的结果 */
+/** 设备解绑的回调接口，返回设备解绑的结果 */
 - (void)XPGWifiSDK:(XPGWifiSDK *)wifiSDK didUnbindDevice:(NSString *)did error:(NSNumber *)error errorMessage:(NSString *)errorMessage {
     
     if([_selectedDevice.did isEqualToString:did]) {
@@ -531,7 +534,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     }
 }
 
-/* 设备状态变化的回调接口，返回设备上报的数据内容，包括设备控制命令的应答、设备运行状态的上报、设备报警、设备故障信息 */
+/** 设备状态变化的回调接口，返回设备上报的数据内容，包括设备控制命令的应答、设备运行状态的上报、设备报警、设备故障信息 */
 - (void)XPGWifiDevice:(XPGWifiDevice *)device didReceiveData:(NSDictionary *)data result:(int)result {
     
     NSLog(@"%s result:%d", __func__, result);
@@ -550,6 +553,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     }
 }
 
+/** 设备连接端开的回调 */
 - (void)XPGWifiDeviceDidDisconnected:(XPGWifiDevice *)device {
     
     NSLog(@"%s deviceProductName:%@", __func__, device.productName);
@@ -561,6 +565,7 @@ static XPGWIFISDKObject *xpgObjectInstance = nil;
     }
 }
 
+/** 错误码转换 */
 - (XPGWIFISDKObjectStatus)getObjectStatusFromSdkCode:(XPGWifiErrorCode)code {
     XPGWIFISDKObjectStatus status;
 

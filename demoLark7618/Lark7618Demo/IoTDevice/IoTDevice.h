@@ -9,13 +9,16 @@
 #ifndef IoTDevice_h
 #define IoTDevice_h
 
-#if 0
+
 #import "IoT6f3074fe43894547a4f1314bd7e3ae0b.h"
 #define IoTDevice IoT6f3074fe43894547a4f1314bd7e3ae0b
-#else
-#import "IoTffaf0cac3d244d07b9da78b5deea8b0b.h"
-#define IoTDevice IoTffaf0cac3d244d07b9da78b5deea8b0b
-#endif
+
+//#import "IoTffaf0cac3d244d07b9da78b5deea8b0b.h"
+//#define IoTDevice IoTffaf0cac3d244d07b9da78b5deea8b0b
+
+
+//#import "IoT2683fb9fca1a49d1a052880c7963d25e.h"
+//#define IoTDevice IoT2683fb9fca1a49d1a052880c7963d25e
 
 
 #endif /* IoTDevice_h */
